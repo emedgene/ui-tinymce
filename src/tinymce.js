@@ -29,12 +29,19 @@ angular.module('ui.tinymce', [])
           expression = {};
         }
 
+        // make config'ed setup method available
+        if (expression.setup) {
+          var configSetup = expression.setup;
+          delete expression.setup;
+        }
+
         options = {
           // Update model when calling setContent (such as from the source editor popup)
           setup: function (ed) {
             var args;
             ed.on('init', function(args) {
               ngModel.$render();
+              ngModel.$setPristine();
             });
             // Update model on button click
             ed.on('ExecCommand', function (e) {
@@ -48,14 +55,21 @@ angular.module('ui.tinymce', [])
             });
             // Update model on change, i.e. copy/pasted text, plugins altering content
             ed.on('SetContent', function (e) {
-              if(!e.initial){
+              if (!e.initial && ngModel.$viewValue !== e.content) {
                 ed.save();
                 updateView();
               }
             });
-            if (expression.setup) {
-              scope.$eval(expression.setup);
-              delete expression.setup;
+            ed.on('blur', function(e) {
+                elm.blur();
+            });
+            // Update model when an object has been resized (table, image)
+            ed.on('ObjectResized', function (e) {
+              ed.save();
+              updateView();
+            });
+            if (configSetup) {
+              configSetup(ed);
             }
           },
           mode: 'exact',
