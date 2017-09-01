@@ -8,8 +8,8 @@ module.exports = function (config) {
       'bower_components/tinymce/tinymce.min.js',
       'src/tinymce.js',
       'test/*.spec.js',
-      {pattern: 'bower_components/tinymce/themes/modern/theme.min.js', served: true},
-      {pattern: 'bower_components/tinymce/skins/lightgray/*', served: true}
+      {pattern: 'bower_components/tinymce/themes/**', included: false},
+      {pattern: 'bower_components/tinymce/skins/lightgray/**', included: false}
     ],
     singleRun: false,
     autoWatch: true,

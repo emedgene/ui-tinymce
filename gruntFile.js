@@ -3,7 +3,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'karma']);
+  grunt.registerTask('default', ['jshint', 'karma', 'uglify']);
 
   var karmaConfig = function(configFile, customOptions) {
     var options = { configFile: configFile, singleRun: true };
@@ -22,7 +22,6 @@ module.exports = function (grunt) {
         curly:true,
         eqeqeq:true,
         immed:true,
-        latedef:true,
         newcap:true,
         noarg:true,
         sub:true,
@@ -34,6 +33,13 @@ module.exports = function (grunt) {
     changelog: {
       options: {
         dest: 'CHANGELOG.md'
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          'dist/tinymce.min.js': ['src/tinymce.js']
+        }
       }
     }
   });
