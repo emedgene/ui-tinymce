@@ -51,8 +51,10 @@ angular.module('ui.tinymce', [])
         }
 
         // fetch a unique ID from the service
-        var uniqueId = uiTinymceService.getUniqueId();
-        attrs.$set('id', uniqueId);
+        if (!attrs.id) {
+          var uniqueId = uiTinymceService.getUniqueId();
+          attrs.$set('id', uniqueId);
+        }
 
         expression = {};
 
