@@ -128,6 +128,7 @@ angular.module('ui.tinymce', [])
             }
           },
           format: expression.format || 'html',
+          branding: false,
           selector: '#' + attrs.id
         };
         // extend options with initial uiTinymceConfig and
