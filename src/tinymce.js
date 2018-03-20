@@ -111,6 +111,10 @@ angular.module('ui.tinymce', [])
               }
             });
 
+            ed.on('paste', function() {
+              ed.isNotDirty = false;
+            });
+
             ed.on('remove', function() {
               element.remove();
             });
