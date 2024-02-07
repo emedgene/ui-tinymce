@@ -120,7 +120,8 @@ angular.module('ui.tinymce', [])
               }
             });
 
-            ed.on('blur', function() {
+            ed.on('blur', function () {
+              console.log('blur');
               element[0].blur();
               ngModel.$setTouched();
               if (!$rootScope.$$phase) {
