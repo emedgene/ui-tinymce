@@ -25,7 +25,6 @@ angular.module('ui.tinymce', [])
           debounce: true
         }, tinyInstance,
           updateView = function (editor) {
-            console.log('updateView');
             var content = editor.getContent({format: options.format}).trim();
             content = $sce.trustAsHtml(content);
 
