@@ -24,7 +24,8 @@ angular.module('ui.tinymce', [])
         var expression, options = {
           debounce: true
         }, tinyInstance,
-          updateView = function(editor) {
+          updateView = function (editor) {
+            console.log('updateView');
             var content = editor.getContent({format: options.format}).trim();
             content = $sce.trustAsHtml(content);
 
@@ -111,6 +112,7 @@ angular.module('ui.tinymce', [])
                 console.log('digest');
                 scope.$digest();
               }
+              console.log('end blur');
             });
 
             ed.on('paste', function() {
