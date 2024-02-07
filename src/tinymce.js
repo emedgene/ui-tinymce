@@ -124,9 +124,12 @@ angular.module('ui.tinymce', [])
               console.log('blur');
               element[0].blur();
               ngModel.$setTouched();
-              if (!$rootScope.$$phase) {
+              // if (!$rootScope.$$phase) {
+              //   scope.$digest();
+              // }
+              $timeout(function () {
                 scope.$digest();
-              }
+              });
             });
 
             ed.on('paste', function() {
