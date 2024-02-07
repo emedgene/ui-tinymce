@@ -105,14 +105,11 @@ angular.module('ui.tinymce', [])
             });
 
             ed.on('blur', function () {
-              console.log('blur');
               element[0].blur();
               ngModel.$setTouched();
               if (!$rootScope.$$phase) {
-                console.log('digest');
                 scope.$digest();
               }
-              console.log('end blur');
             });
 
             ed.on('paste', function() {
