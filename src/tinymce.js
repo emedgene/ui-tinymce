@@ -83,7 +83,7 @@ angular.module('ui.tinymce', [])
             ed.on('init', function() {
               ngModel.$render();
               ngModel.$setPristine();
-                ngModel.$setUntouched();
+              ngModel.$setUntouched();
               if (form) {
                 form.$setPristine();
               }
@@ -101,7 +101,7 @@ angular.module('ui.tinymce', [])
               // 	return;
               // }
               // debouncedUpdate(ed);
-              if (options.debounce) debouncedUpdate(ed);
+              if (options.debounce) { debouncedUpdate(ed); }
               else if (ed.isDirty()) {
                 ed.save();
                 updateView(ed);
