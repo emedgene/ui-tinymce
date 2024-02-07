@@ -94,27 +94,10 @@ angular.module('ui.tinymce', [])
             // - the editor content has been modified [change]
             // - the node has changed [NodeChange]
             // - an object has been resized (table, image) [ObjectResized]
-            ed.on('ExecCommand', function() {
-              console.log('ExecCommand');
-            });
-            ed.on('change', function() {
-              console.log('change');
-            });
-            ed.on('NodeChange', function() {
-              console.log('NodeChange');
-            });
-            ed.on('ObjectResized', function() {
-              console.log('ObjectResized');
-            });
             ed.on('ExecCommand change NodeChange ObjectResized', function() {
-              // if (!options.debounce) {
-              //   ed.save();
-              //   updateView(ed);
-              // 	return;
-              // }
-              // debouncedUpdate(ed);
-              if (options.debounce) { debouncedUpdate(ed); }
-              else if (ed.isDirty()) {
+              if (options.debounce) {
+                debouncedUpdate(ed);
+              } else if (ed.isDirty()) {
                 ed.save();
                 updateView(ed);
               }
@@ -124,12 +107,10 @@ angular.module('ui.tinymce', [])
               console.log('blur');
               element[0].blur();
               ngModel.$setTouched();
-              // if (!$rootScope.$$phase) {
-              //   scope.$digest();
-              // }
-              $timeout(function () {
+              if (!$rootScope.$$phase) {
+                console.log('digest');
                 scope.$digest();
-              });
+              }
             });
 
             ed.on('paste', function() {
