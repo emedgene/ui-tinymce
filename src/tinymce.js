@@ -94,6 +94,18 @@ angular.module('ui.tinymce', [])
             // - the editor content has been modified [change]
             // - the node has changed [NodeChange]
             // - an object has been resized (table, image) [ObjectResized]
+            ed.on('ExecCommand', function() {
+              console.log('ExecCommand');
+            });
+            ed.on('change', function() {
+              console.log('change');
+            });
+            ed.on('NodeChange', function() {
+              console.log('NodeChange');
+            });
+            ed.on('ObjectResized', function() {
+              console.log('ObjectResized');
+            });
             ed.on('ExecCommand change NodeChange ObjectResized', function() {
               // if (!options.debounce) {
               //   ed.save();
